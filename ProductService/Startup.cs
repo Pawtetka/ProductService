@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProductService.Repository;
+using ProductService.Services;
 
 namespace ProductService
 {
@@ -23,6 +25,10 @@ namespace ProductService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<Services.ProductService, Services.ProductService>();
+            services.AddTransient<ApplicationService, ApplicationService>();
+            services.AddTransient<ApplicationCreator, ApplicationCreator>();
+            services.AddTransient<UnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

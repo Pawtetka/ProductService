@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 
 namespace ProductService.Models
 {
-    public class DeliveryApplication
+    public class ApplicationParameters
     {
-        public int Id { get; set; }
+        public int DeliveryApplicationId { get; set; }
+        public int DeliveryObjectId { get; set; }
         public int Number { get; set; }
         public string Name { get; set; }
         public string Date { get; set; }
         public int ProductCount { get; set; }
 
-        public int StorageId { get; set; }
-        public Storage Storage { get; set; }
-        public int ShopId { get; set; }
-        public Shop Shop { get; set; }
+        public string StorageName { get; set; }
+        public string ShopName { get; set; }
+        public List<string> ProductNames { get; set; }
     }
 }
