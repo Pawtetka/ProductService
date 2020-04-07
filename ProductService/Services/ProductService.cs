@@ -9,40 +9,31 @@ namespace ProductService.Services
 {
     public class ProductService
     {
-        /*private ProductRepository _productRepository;
-        private DeliveryObjectRepository _deliveryObjectRepository;
-        private ProductInShopRepository _productInShopRepository;
-        private ProductInStorageRepository _productInStorageRepository;*/
         private UnitOfWork _unitOfWork;
-        public ProductService(/*ProductRepository productRepository, DeliveryObjectRepository deliveryObjectRepository,
-                              ProductInShopRepository productInShopRepository, ProductInStorageRepository productInStorageRepository*/ UnitOfWork unitOfWork)
+        public ProductService(UnitOfWork unitOfWork)
         {
-            /*_productRepository = productRepository;
-            _deliveryObjectRepository = deliveryObjectRepository;
-            _productInShopRepository = productInShopRepository;
-            _productInStorageRepository = productInStorageRepository;*/
             _unitOfWork = unitOfWork;
         }
 
-        public Product FindByName(string name)
+        public ICollection<Product> FindByName(string name)
         {
-            var products = new Product();
+            var products = new List<Product>();
             foreach (var product in _unitOfWork.ProductRepository.GetAll())
             {
                 if (product.Name.Equals(name))
                 {
-                    products = product;
+                    products.Add(product);
                 }
             }
             return products;
         }
 
-        public ICollection<Product> FindByApplicationNumber(int number)
+        public ICollection<Product> FindByApplicationNumber(string number)
         {
             var products = new List<Product>();
             foreach (var deliveryObject in _unitOfWork.DeliveryObjectRepository.GetAll())
             {
-                if (deliveryObject.DeliveryApplication.Number == number)
+                if (deliveryObject.DeliveryApplication.Number == Convert.ToInt32(number))
                 {
                     products.Add(deliveryObject.Product);
                 }

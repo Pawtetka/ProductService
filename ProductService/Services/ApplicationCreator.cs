@@ -11,19 +11,10 @@ namespace ProductService.Services
     {
         private DeliveryApplication deliveryApplication;
         private DeliveryObject deliveryObject;
-        /*private DeliveryApplicationRepository _deliveryApplicationRepository;
-        private DeliveryObjectRepository _deliveryObjectRepository;
-        private ShopRepository _shopRepository;
-        private StorageRepository _storageRepository;*/
         private ProductService _productService;
         private UnitOfWork _unitOfWork;
-        public ApplicationCreator(/*DeliveryApplicationRepository deliveryApplicationRepository, DeliveryObjectRepository deliveryObjectRepository,
-                                  ShopRepository shopRepository, StorageRepository storageRepository,*/ ProductService productService, UnitOfWork unitOfWork)
+        public ApplicationCreator(ProductService productService, UnitOfWork unitOfWork)
         {
-            /*_deliveryApplicationRepository = deliveryApplicationRepository;
-            _deliveryObjectRepository = deliveryObjectRepository;
-            _shopRepository = shopRepository;
-            _storageRepository = storageRepository;*/
             _productService = productService;
             _unitOfWork = unitOfWork;
         }
@@ -65,9 +56,9 @@ namespace ProductService.Services
             {
                 deliveryObject = new DeliveryObject();
                 deliveryObject.Id = applicationParameters.DeliveryObjectId;
-                deliveryObject.ProductId = _productService.FindByName(product).Id;
+                deliveryObject.ProductId = _productService.FindByName(product).First().Id;
                 deliveryObject.DeliveryApplicationId = applicationParameters.DeliveryApplicationId;
-                deliveryObject.Product = _productService.FindByName(product);
+                deliveryObject.Product = _productService.FindByName(product).First();
                 deliveryObject.DeliveryApplication = deliveryApplication;
                 _unitOfWork.DeliveryObjectRepository.Add(deliveryObject);
             }

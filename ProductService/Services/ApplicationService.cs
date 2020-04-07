@@ -9,11 +9,9 @@ namespace ProductService.Services
 {
     public class ApplicationService
     {
-        //private DeliveryApplicationRepository _deliveryApplicationRepository;
         private UnitOfWork _unitOfWork;
-        public ApplicationService(/*DeliveryApplicationRepository deliveryApplicationRepository*/ UnitOfWork unitOfWork)
+        public ApplicationService(UnitOfWork unitOfWork)
         {
-            //_deliveryApplicationRepository = deliveryApplicationRepository;
             _unitOfWork = unitOfWork;
         }
 

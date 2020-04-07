@@ -1,10 +1,29 @@
 ﻿<!DOCTYPE html>
-@{ 
+@{
+    @model ICollection<Product>;
     ViewData["Title"] = "Product find";
 }
 <html>
 <body>
     <h2>Виберіть метод пошуку та введіть необхідні дані</h2>
-
+    <form method="post">
+        <label>Выберите тип поиска:</label><br />
+        <select name="findType">
+            <option value="Name">Искать товар по имени</option>
+            <option value="AppNumber">Искать товар по номеру заявки</option>
+            <option value="Storage">Искать товар по названию склада</option>
+            <option value="Shop">Искать товар по названию магазина</option>
+        </select>
+        <label>Введите:</label><br />
+        <input type="text" name="findText" /><br /><br />
+        <input type="submit" value="Найти" />
+    </form>
+    @{
+        foreach (Product product in Model)
+        {
+            <h3>Продукт - @product.Name</h3>
+            <p>Id - @product.Id</p>
+        }
+    }
 </body>
 </html>
