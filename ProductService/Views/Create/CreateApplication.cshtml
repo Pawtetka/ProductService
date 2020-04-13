@@ -1,0 +1,29 @@
+﻿@{
+    @model ApplicationParameters;
+}
+
+<!DOCTYPE html>
+
+<html>
+<body>
+    @Html.ActionLink("Вернуться на главную", "MainWindow", "Main")
+    <h2>
+        Create new application
+    </h2>
+    <form method="post">
+        <label> Input application parameters</label> <br />
+        <label>Input application number</label>
+        @Html.EditorFor(m => m.Number)<br />
+        <label> Input name</label>
+        @Html.EditorFor(m => m.Name)<br />
+        <label> Input date</label>
+        @Html.EditorFor(m => m.Date)<br />
+        <label> Input count of products</label>
+        @Html.EditorFor(m => m.ProductCount)<br />
+        <label> Input products</label>
+        <input type="text" name="products" /><br />
+        <input type="submit" value="Create" />
+    </form>
+    @Html.DisplayForModel()
+</body>
+</html>

@@ -63,6 +63,7 @@ namespace ProductService.Models
             deliveryApplication.Id = 1;
             deliveryApplication.Name = "Заказ продуктов на склад Сильпо";
             deliveryApplication.Number = 123;
+            deliveryApplication.Date = "15.11.2000";
             deliveryApplication.ProductCount = 2;
             deliveryApplication.Storage = storage;
             deliveryApplication.StorageId = storage.Id;
@@ -71,6 +72,7 @@ namespace ProductService.Models
             deliveryApplication1.Id = 2;
             deliveryApplication1.Name = "Заказ продуктов в магазин Сильпо";
             deliveryApplication1.Number = 456;
+            deliveryApplication1.Date = "27.12.2000";
             deliveryApplication1.ProductCount = 1;
             deliveryApplication1.Shop = shop;
             deliveryApplication1.ShopId = shop.Id;

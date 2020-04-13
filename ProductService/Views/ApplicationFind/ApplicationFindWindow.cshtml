@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+@{
+    @model ICollection<DeliveryApplication>;
+    ViewData["Title"] = "Application find";
+}
+<html>
+<body>
+    @Html.ActionLink("Вернуться на главную", "MainWindow", "Main")
+    <h2>Виберите метод поиска и введите необходимые данные</h2>
+    <form method="post">
+        <label>Выберите тип поиска:</label><br />
+        <select name="findType">
+            <option value="Name">Искать заявку по имени</option>
+            <option value="Date">Искать заявки по дате</option>
+            <option value="Count">Искать заявки по количеству елементов</option>
+        </select>
+        <label>Введите:</label><br />
+        <input type="text" name="findText" /><br /><br />
+        <input type="submit" value="Найти" />
+    </form>
+    @{
+        foreach (DeliveryApplication app in Model)
+        {
+            <h3>Заявка:</h3>
+            <p>@app.Name</p>
+            <p>@app.Number</p>
+            <p>@app.Date</p>
+            <p>@app.ProductCount</p>
+        }
+    }
+</body>
+</html>

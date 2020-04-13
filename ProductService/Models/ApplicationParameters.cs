@@ -16,6 +16,6 @@ namespace ProductService.Models
 
         public string StorageName { get; set; }
         public string ShopName { get; set; }
-        public List<string> ProductNames { get; set; }
+        public List<string> ProductNames { get; set; } = new List<string>();
     }
 }

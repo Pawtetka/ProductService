@@ -17,14 +17,11 @@ namespace ProductService.Controllers
         [HttpGet]
         public IActionResult ProductFindWindow()
         {
-            ViewData["Parameters"] = new ApplicationParameters();
             return View("ProductFindWindow", new List<Product>()); 
         }
         [HttpPost]
         public IActionResult ProductFindWindow(string findType, string findText)
-        {
-            //string authData = $" {findType} {password}";
-            
+        {            
             return View("ProductFindWindow", GetProducts(findType, findText));
         }
 

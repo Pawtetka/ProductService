@@ -41,12 +41,12 @@ namespace ProductService.Services
             return deliveryApplications;
         }
 
-        public ICollection<DeliveryApplication> FindByCount(int count)
+        public ICollection<DeliveryApplication> FindByCount(string count)
         {
             var deliveryApplications = new List<DeliveryApplication>();
             foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll())
             {
-                if (application.ProductCount == count)
+                if (application.ProductCount == Convert.ToInt32(count))
                 {
                     deliveryApplications.Add(application);
                 }
