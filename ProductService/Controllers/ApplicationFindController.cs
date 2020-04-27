@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
 using ProductService.Business.Services;
+using ProductService.Business.Services.Interfaces;
 
 namespace ProductService.Controllers
 {
     public class ApplicationFindController : Controller
     {
-        private ApplicationService _applicationService;
-        public ApplicationFindController(ApplicationService applicationService)
+        private IApplicationService _applicationService;
+        public ApplicationFindController(IApplicationService applicationService)
         {
             _applicationService = applicationService;
         }

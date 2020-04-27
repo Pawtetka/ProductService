@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
 using ProductService.Business.Services;
+using ProductService.Business.Services.Interfaces;
 
 namespace ProductService.Controllers
 {
     public class CreateController : Controller
     {
-        ApplicationCreator creatorService;
-        public CreateController(ApplicationCreator creatorService)
+        IApplicationCreator creatorService;
+        public CreateController(IApplicationCreator creatorService)
         {
             this.creatorService = creatorService;
         }

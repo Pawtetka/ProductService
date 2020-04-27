@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProductService.Business.Services.Interfaces;
 using ProductService.Models;
 
 namespace ProductService.Controllers
 {
     public class ProductFindController : Controller
     {
-        private Business.Services.ProductService _productService;
-        public ProductFindController(Business.Services.ProductService productService)
+        private IProductService _productService;
+        public ProductFindController(IProductService productService)
         {
             _productService = productService;
         }

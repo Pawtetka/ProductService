@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using ProductService.Business;
 using ProductService.Data;
+using ProductService.Business.Services.Interfaces;
 
 namespace ProductService
 {
@@ -31,10 +32,10 @@ namespace ProductService
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProductService")));
             services.AddSingleton(new MapperConfiguration(conf => conf.AddProfile(new AutoMapperProfile())).CreateMapper());
             services.AddControllersWithViews();
-            services.AddTransient<Business.Services.ProductService, Business.Services.ProductService>();
-            services.AddTransient<ApplicationService, ApplicationService>();
-            services.AddTransient<ApplicationCreator, ApplicationCreator>();
-            services.AddSingleton<UnitOfWork, UnitOfWork>();
+            services.AddTransient<IProductService, Business.Services.ProductService>();
+            services.AddTransient<IApplicationService, ApplicationService>();
+            services.AddTransient<IApplicationCreator, ApplicationCreator>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

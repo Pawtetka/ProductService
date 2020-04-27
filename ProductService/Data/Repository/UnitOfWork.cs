@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductService.Data.Repository
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private DeliveryApplicationRepository deliveryApplicationRepository;
         private DeliveryObjectRepository deliveryObjectRepository;

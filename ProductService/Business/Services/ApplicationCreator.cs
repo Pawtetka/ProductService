@@ -6,17 +6,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ProductService.Data.Models;
+using ProductService.Business.Services.Interfaces;
 
 namespace ProductService.Business.Services
 {
-    public class ApplicationCreator
+    public class ApplicationCreator : IApplicationCreator
     {
         private DeliveryApplication deliveryApplication;
         private DeliveryObject deliveryObject;
-        private ProductService _productService;
-        private UnitOfWork _unitOfWork;
+        private IProductService _productService;
+        private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public ApplicationCreator(ProductService productService, UnitOfWork unitOfWork, IMapper mapper)
+        public ApplicationCreator(IProductService productService, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _productService = productService;
             _unitOfWork = unitOfWork;
