@@ -11,7 +11,7 @@ namespace ProductService.Data.Repository
     public class DeliveryApplicationRepository : IRepository<DeliveryApplicationModel>
     {
         private DbSet<DeliveryApplicationModel> _dbSet;
-        public DeliveryApplicationRepository(DbContext context)
+        public DeliveryApplicationRepository(ApplicationContext context)
         {
             _dbSet = context.Set<DeliveryApplicationModel>();
         }

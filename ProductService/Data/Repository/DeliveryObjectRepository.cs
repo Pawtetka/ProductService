@@ -11,7 +11,7 @@ namespace ProductService.Data.Repository
     public class DeliveryObjectRepository : IRepository<DeliveryObjectModel>
     {
         private DbSet<DeliveryObjectModel> Collection;
-        public DeliveryObjectRepository(DbContext context)
+        public DeliveryObjectRepository(ApplicationContext context)
         {
             Collection = context.Set<DeliveryObjectModel>();
         }

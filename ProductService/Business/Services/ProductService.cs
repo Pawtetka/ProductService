@@ -35,11 +35,12 @@ namespace ProductService.Business.Services
         public ICollection<Product> FindByApplicationNumber(string number)
         {
             var products = new List<Product>();
-            foreach (var deliveryObject in _unitOfWork.DeliveryObjectRepository.GetAll())
+            var deliveryApplications = _unitOfWork.DeliveryObjectRepository.GetAll().ToList();
+            foreach (var deliveryObject in deliveryApplications)
             {
-                if (deliveryObject.DeliveryApplication.Number == Convert.ToInt32(number))
+                if (_unitOfWork.DeliveryApplicationRepository.GetById(deliveryObject.DeliveryApplicationId).Number == Convert.ToInt32(number))
                 {
-                    products.Add(_mapper.Map<Product>(deliveryObject.Product));
+                    products.Add(_mapper.Map<Product>(_unitOfWork.ProductRepository.GetById(deliveryObject.ProductId)));
                 }
             }
             return products;
@@ -47,11 +48,11 @@ namespace ProductService.Business.Services
         public ICollection<Product> FindByShop(string shopName)
         {
             var products = new List<Product>();
-            foreach (var productInShop in _unitOfWork.ProductInShopRepository.GetAll())
+            foreach (var productInShop in _unitOfWork.ProductInShopRepository.GetAll().ToList())
             {
-                if (productInShop.Shop.Name.Equals(shopName))
+                if (_unitOfWork.ShopRepository.GetById(productInShop.ShopId).Name.Equals(shopName))
                 {
-                    products.Add(_mapper.Map<Product>(productInShop.Product));
+                    products.Add(_mapper.Map<Product>(_unitOfWork.ProductRepository.GetById(productInShop.ProductId)));
                 }
             }
             return products;
@@ -60,11 +61,11 @@ namespace ProductService.Business.Services
         public ICollection<Product> FindByStorage(string storageName)
         {
             var products = new List<Product>();
-            foreach (var productInStorage in _unitOfWork.ProductInStorageRepository.GetAll())
+            foreach (var productInStorage in _unitOfWork.ProductInStorageRepository.GetAll().ToList())
             {
-                if (productInStorage.Storage.Name.Equals(storageName))
+                if (_unitOfWork.StorageRepository.GetById(productInStorage.StorageId).Name.Equals(storageName))
                 {
-                    products.Add(_mapper.Map<Product>(productInStorage.Product));
+                    products.Add(_mapper.Map<Product>(_unitOfWork.ProductRepository.GetById(productInStorage.ProductId)));
                 }
             }
             return products;

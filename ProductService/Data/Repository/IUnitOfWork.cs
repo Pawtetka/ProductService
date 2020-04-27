@@ -14,5 +14,6 @@ namespace ProductService.Data.Repository
         public ProductRepository ProductRepository { get; }
         public ShopRepository ShopRepository { get; }
         public StorageRepository StorageRepository { get; }
+        void Save();
     }
 }

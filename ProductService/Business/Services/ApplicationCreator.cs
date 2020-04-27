@@ -54,6 +54,7 @@ namespace ProductService.Business.Services
                 }
             }
             _unitOfWork.DeliveryApplicationRepository.Add(_mapper.Map<DeliveryApplicationModel>(deliveryApplication));
+            _unitOfWork.Save();
         }
         private void CreateDelObj(ApplicationParameters applicationParameters)
         {
@@ -66,6 +67,7 @@ namespace ProductService.Business.Services
                 //deliveryObject.Product = _productService.FindByName(product).First();
                 //deliveryObject.DeliveryApplication = deliveryApplication;
                 _unitOfWork.DeliveryObjectRepository.Add(_mapper.Map<DeliveryObjectModel>(deliveryObject));
+                _unitOfWork.Save();
             }
         }
     }

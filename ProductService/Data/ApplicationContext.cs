@@ -80,6 +80,7 @@ namespace ProductService.Data
                 Number = 123,
                 Date = "15.11.2000",
                 ProductCount = 1,
+                ShopId = null,
                 StorageId = 1
             };
 
@@ -90,7 +91,8 @@ namespace ProductService.Data
                 Number = 321,
                 Date = "27.12.2000",
                 ProductCount = 2,
-                ShopId = 1
+                ShopId = 1,
+                StorageId = null
             };
 
             var deliveryObj1 = new DeliveryObjectModel

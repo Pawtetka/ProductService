@@ -12,9 +12,9 @@ namespace ProductService.Data.Models
         public string Name { get; set; }
         public string Date { get; set; }
         public int ProductCount { get; set; }
-        public int StorageId { get; set; }
+        public int? StorageId { get; set; }
         public StorageModel Storage { get; set; }
-        public int ShopId { get; set; }
+        public int? ShopId { get; set; }
         public ShopModel Shop { get; set; }
     }
 }

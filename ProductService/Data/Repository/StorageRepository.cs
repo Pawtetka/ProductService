@@ -11,7 +11,7 @@ namespace ProductService.Data.Repository
     public class StorageRepository : IRepository<StorageModel>
     {
         private DbSet<StorageModel> Collection;
-        public StorageRepository(DbContext context)
+        public StorageRepository(ApplicationContext context)
         {
             Collection = context.Set<StorageModel>(); ;
         }

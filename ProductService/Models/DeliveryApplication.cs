@@ -13,9 +13,9 @@ namespace ProductService.Models
         public string Date { get; set; }
         public int ProductCount { get; set; }
 
-        public int StorageId { get; set; }
+        public int? StorageId { get; set; }
         public Storage Storage { get; set; }
-        public int ShopId { get; set; }
+        public int? ShopId { get; set; }
         public Shop Shop { get; set; }
     }
 }

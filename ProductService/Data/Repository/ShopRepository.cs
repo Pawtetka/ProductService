@@ -11,7 +11,7 @@ namespace ProductService.Data.Repository
     public class ShopRepository : IRepository<ShopModel>
     {
         private DbSet<ShopModel> Collection;
-        public ShopRepository(DbContext context)
+        public ShopRepository(ApplicationContext context)
         {
             Collection = context.Set<ShopModel>();
         }

@@ -15,8 +15,8 @@ namespace ProductService.Data.Repository
         private ProductRepository productRepository;
         private ShopRepository shopRepository;
         private StorageRepository storageRepository;
-        private DbContext _context;
-        public UnitOfWork(DbContext context)
+        private ApplicationContext _context;
+        public UnitOfWork(ApplicationContext context)
         {
             _context = context;
         }
@@ -27,5 +27,10 @@ namespace ProductService.Data.Repository
         public ProductRepository ProductRepository { get { return productRepository ?? new ProductRepository(_context); } }
         public ShopRepository ShopRepository { get { return shopRepository ?? new ShopRepository(_context); } }
         public StorageRepository StorageRepository { get { return storageRepository ?? new StorageRepository(_context); } }
+
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
     }
 }
