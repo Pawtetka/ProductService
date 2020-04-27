@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProductService.Data
 {
-    public class AppContext : DbContext
+    public class ApplicationContext : DbContext
     {
-        public AppContext(DbContextOptions<AppContext> options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
 
