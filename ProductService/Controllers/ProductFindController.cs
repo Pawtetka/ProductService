@@ -9,8 +9,8 @@ namespace ProductService.Controllers
 {
     public class ProductFindController : Controller
     {
-        private Services.ProductService _productService;
-        public ProductFindController(Services.ProductService productService)
+        private Business.Services.ProductService _productService;
+        public ProductFindController(Business.Services.ProductService productService)
         {
             _productService = productService;
         }

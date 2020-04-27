@@ -6,24 +6,22 @@
 
 <html>
 <body>
-    @Html.ActionLink("Вернуться на главную", "MainWindow", "Main")
     <h2>
-        Create new application
+        Создать новую заявку
     </h2>
     <form method="post">
-        <label> Input application parameters</label> <br />
-        <label>Input application number</label>
+        <label> Введите параметры заявки</label> <br />
+        <label>Введите номер заявки</label>
         @Html.EditorFor(m => m.Number)<br />
-        <label> Input name</label>
+        <label> Введите название заявки</label>
         @Html.EditorFor(m => m.Name)<br />
-        <label> Input date</label>
+        <label> Введите дату заявки</label>
         @Html.EditorFor(m => m.Date)<br />
-        <label> Input count of products</label>
+        <label> Введите количество продуктов этой заявки</label>
         @Html.EditorFor(m => m.ProductCount)<br />
-        <label> Input products</label>
+        <label> Введите продукты для заявки</label>
         <input type="text" name="products" /><br />
         <input type="submit" value="Create" />
     </form>
-    @Html.DisplayForModel()
 </body>
 </html>

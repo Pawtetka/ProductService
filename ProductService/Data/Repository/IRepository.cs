@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProductService.Repository
+namespace ProductService.Data.Repository
 {
     interface IRepository<T>
     {

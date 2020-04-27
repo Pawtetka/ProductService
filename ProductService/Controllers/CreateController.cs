@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
-using ProductService.Services;
+using ProductService.Business.Services;
 
 namespace ProductService.Controllers
 {
@@ -27,7 +27,7 @@ namespace ProductService.Controllers
             products.Trim();
             parameters.ProductNames = products.Split(",").ToList();
             creatorService.Create(parameters);
-            return View("CreateApplication", parameters);
+            return RedirectToAction("CreateApplication");
         }
     }
 }

@@ -9,10 +9,6 @@ namespace ProductService.Controllers
 {
     public class MainController : Controller
     {
-        public MainController()
-        {
-            Data.LoadData();
-        }
         public IActionResult MainWindow()
         {
             return View();

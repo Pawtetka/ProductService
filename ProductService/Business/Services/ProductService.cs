@@ -1,18 +1,21 @@
 ﻿using ProductService.Models;
-using ProductService.Repository;
+using ProductService.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
-namespace ProductService.Services
+namespace ProductService.Business.Services
 {
     public class ProductService
     {
         private UnitOfWork _unitOfWork;
-        public ProductService(UnitOfWork unitOfWork)
+        private IMapper _mapper;
+        public ProductService(UnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public ICollection<Product> FindByName(string name)
@@ -22,7 +25,7 @@ namespace ProductService.Services
             {
                 if (product.Name.Equals(name))
                 {
-                    products.Add(product);
+                    products.Add(_mapper.Map<Product>(product));
                 }
             }
             return products;
@@ -35,7 +38,7 @@ namespace ProductService.Services
             {
                 if (deliveryObject.DeliveryApplication.Number == Convert.ToInt32(number))
                 {
-                    products.Add(deliveryObject.Product);
+                    products.Add(_mapper.Map<Product>(deliveryObject.Product));
                 }
             }
             return products;
@@ -47,7 +50,7 @@ namespace ProductService.Services
             {
                 if (productInShop.Shop.Name.Equals(shopName))
                 {
-                    products.Add(productInShop.Product);
+                    products.Add(_mapper.Map<Product>(productInShop.Product));
                 }
             }
             return products;
@@ -60,7 +63,7 @@ namespace ProductService.Services
             {
                 if (productInStorage.Storage.Name.Equals(storageName))
                 {
-                    products.Add(productInStorage.Product);
+                    products.Add(_mapper.Map<Product>(productInStorage.Product));
                 }
             }
             return products;

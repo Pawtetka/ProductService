@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
-using ProductService.Services;
+using ProductService.Business.Services;
 
 namespace ProductService.Controllers
 {

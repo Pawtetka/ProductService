@@ -1,18 +1,21 @@
 ﻿using ProductService.Models;
-using ProductService.Repository;
+using ProductService.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 
-namespace ProductService.Services
+namespace ProductService.Business.Services
 {
     public class ApplicationService
     {
         private UnitOfWork _unitOfWork;
-        public ApplicationService(UnitOfWork unitOfWork)
+        private IMapper _mapper;
+        public ApplicationService(UnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public ICollection<DeliveryApplication> FindByName(string name)
@@ -22,7 +25,7 @@ namespace ProductService.Services
             {
                 if (application.Name.Equals(name))
                 {
-                    deliveryApplications.Add(application);
+                    deliveryApplications.Add(_mapper.Map<DeliveryApplication>(application));
                 }
             }
             return deliveryApplications;
@@ -35,7 +38,7 @@ namespace ProductService.Services
             {
                 if (application.Date.Equals(date))
                 {
-                    deliveryApplications.Add(application);
+                    deliveryApplications.Add(_mapper.Map<DeliveryApplication>(application));
                 }
             }
             return deliveryApplications;
@@ -48,7 +51,7 @@ namespace ProductService.Services
             {
                 if (application.ProductCount == Convert.ToInt32(count))
                 {
-                    deliveryApplications.Add(application);
+                    deliveryApplications.Add(_mapper.Map<DeliveryApplication>(application));
                 }
             }
             return deliveryApplications;

@@ -1,11 +1,13 @@
 ﻿using ProductService.Models;
-using ProductService.Repository;
+using ProductService.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using ProductService.Data.Models;
 
-namespace ProductService.Services
+namespace ProductService.Business.Services
 {
     public class ApplicationCreator
     {
@@ -13,10 +15,12 @@ namespace ProductService.Services
         private DeliveryObject deliveryObject;
         private ProductService _productService;
         private UnitOfWork _unitOfWork;
-        public ApplicationCreator(ProductService productService, UnitOfWork unitOfWork)
+        private IMapper _mapper;
+        public ApplicationCreator(ProductService productService, UnitOfWork unitOfWork, IMapper mapper)
         {
             _productService = productService;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public void Create(ApplicationParameters applicationParameters)
@@ -37,7 +41,7 @@ namespace ProductService.Services
                 if (shop.Name.Equals(applicationParameters.ShopName))
                 {
                     deliveryApplication.ShopId = shop.Id;
-                    deliveryApplication.Shop = shop;
+                    //deliveryApplication.Shop = _mapper.Map<Shop>(shop);
                 }
             }
             foreach (var storage in _unitOfWork.StorageRepository.GetAll())
@@ -45,10 +49,10 @@ namespace ProductService.Services
                 if (storage.Name.Equals(applicationParameters.StorageName))
                 {
                     deliveryApplication.StorageId = storage.Id;
-                    deliveryApplication.Storage = storage;
+                    //deliveryApplication.Storage = _mapper.Map<Storage>(storage);
                 }
             }
-            _unitOfWork.DeliveryApplicationRepository.Add(deliveryApplication);
+            _unitOfWork.DeliveryApplicationRepository.Add(_mapper.Map<DeliveryApplicationModel>(deliveryApplication));
         }
         private void CreateDelObj(ApplicationParameters applicationParameters)
         {
@@ -58,9 +62,9 @@ namespace ProductService.Services
                 deliveryObject.Id = applicationParameters.DeliveryObjectId;
                 deliveryObject.ProductId = _productService.FindByName(product).First().Id;
                 deliveryObject.DeliveryApplicationId = applicationParameters.DeliveryApplicationId;
-                deliveryObject.Product = _productService.FindByName(product).First();
-                deliveryObject.DeliveryApplication = deliveryApplication;
-                _unitOfWork.DeliveryObjectRepository.Add(deliveryObject);
+                //deliveryObject.Product = _productService.FindByName(product).First();
+                //deliveryObject.DeliveryApplication = deliveryApplication;
+                _unitOfWork.DeliveryObjectRepository.Add(_mapper.Map<DeliveryObjectModel>(deliveryObject));
             }
         }
     }
