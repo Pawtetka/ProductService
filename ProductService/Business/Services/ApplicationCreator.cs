@@ -15,11 +15,13 @@ namespace ProductService.Business.Services
         private DeliveryApplication deliveryApplication;
         private DeliveryObject deliveryObject;
         private IProductService _productService;
+        private IApplicationService _applicationService;
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public ApplicationCreator(IProductService productService, IUnitOfWork unitOfWork, IMapper mapper)
+        public ApplicationCreator(IProductService productService, IApplicationService applicationService, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _productService = productService;
+            _applicationService = applicationService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -32,22 +34,22 @@ namespace ProductService.Business.Services
         private void CreateDelApp(ApplicationParameters applicationParameters)
         {
             deliveryApplication = new DeliveryApplication();
-            deliveryApplication.Id = applicationParameters.DeliveryApplicationId;
+            //deliveryApplication.Id = applicationParameters.DeliveryApplicationId;
             deliveryApplication.Number = applicationParameters.Number;
             deliveryApplication.Name = applicationParameters.Name;
             deliveryApplication.Date = applicationParameters.Date;
             deliveryApplication.ProductCount = applicationParameters.ProductCount;
-            foreach (var shop in _unitOfWork.ShopRepository.GetAll())
+            foreach (var shop in _unitOfWork.ShopRepository.GetAll().ToList())
             {
-                if (shop.Name.Equals(applicationParameters.ShopName))
+                if (shop.Name.Equals(applicationParameters.CustomerName))
                 {
                     deliveryApplication.ShopId = shop.Id;
                     //deliveryApplication.Shop = _mapper.Map<Shop>(shop);
                 }
             }
-            foreach (var storage in _unitOfWork.StorageRepository.GetAll())
+            foreach (var storage in _unitOfWork.StorageRepository.GetAll().ToList())
             {
-                if (storage.Name.Equals(applicationParameters.StorageName))
+                if (storage.Name.Equals(applicationParameters.CustomerName))
                 {
                     deliveryApplication.StorageId = storage.Id;
                     //deliveryApplication.Storage = _mapper.Map<Storage>(storage);
@@ -63,7 +65,7 @@ namespace ProductService.Business.Services
                 deliveryObject = new DeliveryObject();
                 deliveryObject.Id = applicationParameters.DeliveryObjectId;
                 deliveryObject.ProductId = _productService.FindByName(product).First().Id;
-                deliveryObject.DeliveryApplicationId = applicationParameters.DeliveryApplicationId;
+                deliveryObject.DeliveryApplicationId = _applicationService.FindByName(applicationParameters.Name).First().Id;//applicationParameters.DeliveryApplicationId;
                 //deliveryObject.Product = _productService.FindByName(product).First();
                 //deliveryObject.DeliveryApplication = deliveryApplication;
                 _unitOfWork.DeliveryObjectRepository.Add(_mapper.Map<DeliveryObjectModel>(deliveryObject));

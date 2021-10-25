@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductService.Business.Services.Interfaces;
 using ProductService.Models;
 
 namespace ProductService.Controllers
 {
+    [Authorize]
     public class ProductFindController : Controller
     {
         private IProductService _productService;

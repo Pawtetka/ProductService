@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using ProductService.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +9,8 @@ namespace ProductService.Data.Repository
 {
     public interface IUnitOfWork
     {
+        SignInManager<User> SignInManager { get; }
+        UserManager<User> UserManager { get; }
         public DeliveryApplicationRepository DeliveryApplicationRepository { get; }
         public DeliveryObjectRepository DeliveryObjectRepository { get; }
         public ProductInShopRepository ProductInShopRepository { get; }

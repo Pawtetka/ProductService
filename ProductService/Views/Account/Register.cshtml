@@ -1,0 +1,34 @@
+﻿
+@model UserRegisterData
+
+<h1>Register</h1>
+
+<form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+    @Html.ValidationSummary(true)
+    <div class="validation" asp-validation-summary="ModelOnly" />
+    <div>
+        <div class="form-group">
+            <label asp-for="UserName">Input username</label>
+            <input type="text" asp-for="UserName" />
+            <span asp-validation-for="UserName" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Input email</label>
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Input password</label>
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword">Confirm password</label>
+            <input asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register" class="btn" />
+        </div>
+    </div>
+</form>

@@ -19,6 +19,8 @@
         @Html.EditorFor(m => m.Date)<br />
         <label> Введите количество продуктов этой заявки</label>
         @Html.EditorFor(m => m.ProductCount)<br />
+        <label>Введите название заказчика</label>
+        @Html.EditorFor(m => m.CustomerName)<br />
         <label> Введите продукты для заявки</label>
         <input type="text" name="products" /><br />
         <input type="submit" value="Create" />

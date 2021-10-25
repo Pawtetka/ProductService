@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ProductService.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,14 @@ namespace ProductService.Data.Repository
         private ShopRepository shopRepository;
         private StorageRepository storageRepository;
         private ApplicationContext _context;
-        public UnitOfWork(ApplicationContext context)
+
+        public UserManager<User> UserManager { get; }
+        public SignInManager<User> SignInManager { get; set; }
+        public UnitOfWork(ApplicationContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
+            UserManager = userManager;
+            SignInManager = signInManager;
         }
         public DeliveryApplicationRepository DeliveryApplicationRepository { get { return deliveryApplicationRepository ?? new DeliveryApplicationRepository(_context); } }
         public DeliveryObjectRepository DeliveryObjectRepository { get { return deliveryObjectRepository ?? new DeliveryObjectRepository(_context); } }

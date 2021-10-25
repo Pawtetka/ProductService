@@ -12,6 +12,7 @@ namespace ProductService.Business
     {
         public AutoMapperProfile()
         {
+            CreateMap<UserRegisterData, User>();
             CreateMap<Product, ProductModel>().ReverseMap();
             CreateMap<Shop, ShopModel>().ReverseMap();
             CreateMap<Storage, StorageModel>().ReverseMap();

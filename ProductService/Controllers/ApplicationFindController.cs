@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
 using ProductService.Business.Services;
 using ProductService.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductService.Controllers
 {
+    [Authorize]
     public class ApplicationFindController : Controller
     {
         private IApplicationService _applicationService;

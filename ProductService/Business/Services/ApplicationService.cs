@@ -22,7 +22,7 @@ namespace ProductService.Business.Services
         public ICollection<DeliveryApplication> FindByName(string name)
         {
             var deliveryApplications = new List<DeliveryApplication>();
-            foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll())
+            foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll().ToList())
             {
                 if (application.Name.Equals(name))
                 {
@@ -35,7 +35,7 @@ namespace ProductService.Business.Services
         public ICollection<DeliveryApplication> FindByDate(string date)
         {
             var deliveryApplications = new List<DeliveryApplication>();
-            foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll())
+            foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll().ToList())
             {
                 if (application.Date.Equals(date))
                 {
@@ -48,7 +48,7 @@ namespace ProductService.Business.Services
         public ICollection<DeliveryApplication> FindByCount(string count)
         {
             var deliveryApplications = new List<DeliveryApplication>();
-            foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll())
+            foreach (var application in _unitOfWork.DeliveryApplicationRepository.GetAll().ToList())
             {
                 if (application.ProductCount == Convert.ToInt32(count))
                 {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ProductService.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProductService.Data
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext<User>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-
         }
 
         public DbSet<ProductModel> Products { get; set; }

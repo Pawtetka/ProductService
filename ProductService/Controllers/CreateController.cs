@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using ProductService.Models;
 using ProductService.Business.Services;
 using ProductService.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductService.Controllers
 {
+    [Authorize]
     public class CreateController : Controller
     {
         IApplicationCreator creatorService;
@@ -25,7 +27,7 @@ namespace ProductService.Controllers
         [HttpPost]
         public ActionResult CreateApplication(string products, ApplicationParameters parameters)
         {
-            products.Trim();
+            //products.Trim();
             parameters.ProductNames = products.Split(",").ToList();
             creatorService.Create(parameters);
             return RedirectToAction("CreateApplication");
